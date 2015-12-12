@@ -1,0 +1,27 @@
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.%backup%~
+/.emacs.desktop
+/.emacs.desktop.lock
+/auto-save-list/
+/backups/
+/elpa/
+/eshell/history
+/eshell/lastdir
+/request/
+.smex-items
+smex-items
+recentf
+ido.last
+ac-comphist.dat
+places
+.DS_Store
+tramp
+session.*
+/el-get/
+/.python-environments/
+bookmarks
+/url
+ido.last
+recentf
