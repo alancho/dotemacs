@@ -608,3 +608,6 @@ convoluted. We use part of it --- skip comment par we are in."
           (lambda ()
             (cd default-directory)
             (eshell)))
+
+;; In dired, sort directories first
+(setq dired-listing-switches "-aBhl  --group-directories-first")
