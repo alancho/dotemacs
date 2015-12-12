@@ -121,7 +121,7 @@
 
 ;; Default directory
 ;; ========================================================
-(setq default-directory "~/Dropbox/PhD/")
+(setq default-directory "~/Dropbox/")
 
 ;; Python
 ;; ========================================================
