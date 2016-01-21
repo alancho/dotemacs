@@ -178,9 +178,27 @@
 ;; (add-hook 'ess-mode-hook
 ;;           (lambda ()
 ;;             (define-key ess-mode-map [(C-return)] " %>%\n")))
-(add-hook 'ess-mode-hook
-          (lambda ()
-            (define-key ess-mode-map [(C-return)] " %>%")))
+;; (add-hook 'ess-mode-hook
+;;           (lambda ()
+;;             (define-key ess-mode-map [(C-return)] " %>%")))
+
+(defun then_R_operator ()
+  "R - %>% operator or 'then' pipe operator"
+  (interactive)
+  (just-one-space 1)
+  (insert "%>%")
+  (reindent-then-newline-and-indent))
+(define-key ess-mode-map (kbd "C-<return>") 'then_R_operator)
+(define-key inferior-ess-mode-map (kbd "C-<return>") 'then_R_operator)
+
+(defun then_ggplot_plus ()
+  "R - %>% operator or 'then' pipe operator"
+  (interactive)
+  (just-one-space 1)
+  (insert "+")
+  (reindent-then-newline-and-indent))
+(define-key ess-mode-map (kbd "C-+") 'then_ggplot_plus)
+(define-key inferior-ess-mode-map (kbd "C-+") 'then_ggplot_plus)
 
 ;; (setq ess-default-style 'OWN)
 ;; (setq ess-default-style 'DEFAULT)
