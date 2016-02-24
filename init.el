@@ -296,8 +296,8 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; My magit setup
 ;; ========================================================
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
+;; (require 'magit)
+;; (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; To stop seeing the warning triggered by the last version
 ;; (setq magit-last-seen-setup-instructions "1.4.0")
@@ -313,105 +313,105 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; My org-mode setup
 ;; ========================================================
-(require 'org)
+;; (require 'org)
 
-;; This is to have no blank lines inserted after headings
-(setq org-blank-before-new-entry nil)
+;; ;; This is to have no blank lines inserted after headings
+;; (setq org-blank-before-new-entry nil)
 
-;; This is to view all at startup
-(setq org-startup-folded nil)
+;; ;; This is to view all at startup
+;; (setq org-startup-folded nil)
 
-;; Change todo state with C-c C-t KEY
-(setq org-use-fast-todo-selection t)
+;; ;; Change todo state with C-c C-t KEY
+;; (setq org-use-fast-todo-selection t)
 
-;; Fixing task state with S-arrow
-;; (setq org-treat-S-cursor-todo-selection-as-state-change nil)
+;; ;; Fixing task state with S-arrow
+;; ;; (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
-;; To allow S-arrow to work only with time stamps
-(setq org-support-shift-select (quote always))
+;; ;; To allow S-arrow to work only with time stamps
+;; (setq org-support-shift-select (quote always))
 
-(global-set-key (kbd "<f12>") 'org-agenda)
-(global-set-key (kbd "<f11>") 'org-capture)
+;; (global-set-key (kbd "<f12>") 'org-agenda)
+;; (global-set-key (kbd "<f11>") 'org-capture)
 
-(setq org-agenda-files (list "~/Dropbox/gtd/inbox.org"
-			     "~/Dropbox/gtd/thesis.org"
-			     "~/Dropbox/gtd/ideas.org"
-			     "~/Dropbox/gtd/someday.org"
-			     ))
+;; (setq org-agenda-files (list "~/Dropbox/gtd/inbox.org"
+;; 			     "~/Dropbox/gtd/thesis.org"
+;; 			     "~/Dropbox/gtd/ideas.org"
+;; 			     "~/Dropbox/gtd/someday.org"
+;; 			     ))
 
-;; ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, and org-protocol
-(setq org-capture-templates
-      (quote (("t" "Tasks" entry (file+headline "~/Dropbox/gtd/inbox.org" "Tasks")
-               "* TODO %?\n %i")
-              ("j" "Journal" entry (file+datetree "~/Dropbox/gtd/journal.org")
-               "* %?\n%U"))))
+;; ;; ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, and org-protocol
+;; (setq org-capture-templates
+;;       (quote (("t" "Tasks" entry (file+headline "~/Dropbox/gtd/inbox.org" "Tasks")
+;;                "* TODO %?\n %i")
+;;               ("j" "Journal" entry (file+datetree "~/Dropbox/gtd/journal.org")
+;;                "* %?\n%U"))))
 
 
-;; Targets include this file and any file contributing to the agenda - up to 2 levels deep
-(setq org-refile-targets (quote (("~/Dropbox/gtd/thesis.org" :level . 2)
-				 ("~/Dropbox/gtd/ideas.org" :level . 2)
-                                 ("~/Dropbox/gtd/someday.org" :level . 2))))
+;; ;; Targets include this file and any file contributing to the agenda - up to 2 levels deep
+;; (setq org-refile-targets (quote (("~/Dropbox/gtd/thesis.org" :level . 2)
+;; 				 ("~/Dropbox/gtd/ideas.org" :level . 2)
+;;                                  ("~/Dropbox/gtd/someday.org" :level . 2))))
 
-;; Stop using paths for refile targets - we file directly with IDO
-(setq org-refile-use-outline-path nil)
+;; ;; Stop using paths for refile targets - we file directly with IDO
+;; (setq org-refile-use-outline-path nil)
 
-;; Targets complete directly with IDO
-(setq org-outline-path-complete-in-steps nil)
+;; ;; Targets complete directly with IDO
+;; (setq org-outline-path-complete-in-steps nil)
 
-;; Allow refile to create parent tasks with confirmation
-(setq org-refile-allow-creating-parent-nodes (quote confirm))
+;; ;; Allow refile to create parent tasks with confirmation
+;; (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
-;; Use IDO for both buffer and file completion and ido-everywhere to t
-(setq org-completion-use-ido t)
-(setq ido-everywhere t)
-(setq ido-max-directory-size 100000)
-(ido-mode (quote both))
+;; ;; Use IDO for both buffer and file completion and ido-everywhere to t
+;; (setq org-completion-use-ido t)
+;; (setq ido-everywhere t)
+;; (setq ido-max-directory-size 100000)
+;; (ido-mode (quote both))
 
-(setq org-agenda-custom-commands
-      '(("p" "Projects"
-         ((tags "PROJECT")))
+;; (setq org-agenda-custom-commands
+;;       '(("p" "Projects"
+;;          ((tags "PROJECT")))
 
-        ("c" "Office and Home Lists"
-         ((agenda)
-          (tags-todo "DATAANALYSIS")
-          (tags-todo "WRITING")
-          (tags-todo "EVENING")))
+;;         ("c" "Office and Home Lists"
+;;          ((agenda)
+;;           (tags-todo "DATAANALYSIS")
+;;           (tags-todo "WRITING")
+;;           (tags-todo "EVENING")))
 
-        ("d" "Daily Action List"
-         (
-          (agenda "" ((org-agenda-ndays 1)
-                      (org-agenda-sorting-strategy
-                       (quote ((agenda time-up priority-down tag-up) )))
-                      (org-deadline-warning-days 0)
-                      ))))
-        )
-      )
+;;         ("d" "Daily Action List"
+;;          (
+;;           (agenda "" ((org-agenda-ndays 1)
+;;                       (org-agenda-sorting-strategy
+;;                        (quote ((agenda time-up priority-down tag-up) )))
+;;                       (org-deadline-warning-days 0)
+;;                       ))))
+;;         )
+;;       )
 
-;; Remove completed deadline tasks from the agenda view
-(setq org-agenda-skip-deadline-if-done t)
+;; ;; Remove completed deadline tasks from the agenda view
+;; (setq org-agenda-skip-deadline-if-done t)
 
-;; Remove completed scheduled tasks from the agenda view
-(setq org-agenda-skip-scheduled-if-done t)
+;; ;; Remove completed scheduled tasks from the agenda view
+;; (setq org-agenda-skip-scheduled-if-done t)
 
-;; Remove completed items from search results
-(setq org-agenda-skip-timestamp-if-done t)
+;; ;; Remove completed items from search results
+;; (setq org-agenda-skip-timestamp-if-done t)
 
-;; ;; This is to have always the 7 coming days in the week
-;; (setq org-agenda-start-on-weekday nil)
-;; (setq org-agenda-ndays 21)
+;; ;; ;; This is to have always the 7 coming days in the week
+;; ;; (setq org-agenda-start-on-weekday nil)
+;; ;; (setq org-agenda-ndays 21)
 
-;; (defun org-summary-todo (n-done n-not-done)
-;;   "Switch entry to DONE when all subentries are done, to TODO otherwise."
-;;   (let (org-log-done org-log-states)   ; turn off logging
-;;     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+;; ;; (defun org-summary-todo (n-done n-not-done)
+;; ;;   "Switch entry to DONE when all subentries are done, to TODO otherwise."
+;; ;;   (let (org-log-done org-log-states)   ; turn off logging
+;; ;;     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
-;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+;; ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
-(defun gtd ()
-    (interactive)
-    (find-file "~/Dropbox/gtd/inbox.org"))
+;; (defun gtd ()
+;;     (interactive)
+;;     (find-file "~/Dropbox/gtd/inbox.org"))
 
-(global-set-key (kbd "C-c g") 'gtd)
+;; (global-set-key (kbd "C-c g") 'gtd)
 
 ;; Recent mode
 ;; ========================================================
