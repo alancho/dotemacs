@@ -32,7 +32,7 @@
    exec-path-from-shell
    expand-region
    idle-highlight-mode
-   ;; ido-ubiquitous
+   ido-ubiquitous
    magit
    markdown-mode
    org-mode
@@ -175,13 +175,6 @@
              (local-set-key [(shift return)] 'my-ess-eval)))
 
 ;; This is to be quicker when writing the %>% operator from dplyr
-;; (add-hook 'ess-mode-hook
-;;           (lambda ()
-;;             (define-key ess-mode-map [(C-return)] " %>%\n")))
-;; (add-hook 'ess-mode-hook
-;;           (lambda ()
-;;             (define-key ess-mode-map [(C-return)] " %>%")))
-
 (defun then_R_operator ()
   "R - %>% operator or 'then' pipe operator"
   (interactive)
