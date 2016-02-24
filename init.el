@@ -243,7 +243,7 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-;; This are my faces, fonts, et cetera
+;; This are my faces, fonts, etcetera
 ;; ========================================================
 ;; (set-face-attribute 'default nil :height 110 :weight 'normal)
 ;; In the Mac version comment the line above and uncomment the one below
@@ -253,19 +253,6 @@
 ;; (set-face-attribute 'default nil :height 110 :family "Andale Mono")
 ;; (set-face-attribute 'default nil :height 120 :family "Consolas")
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(markdown-bold-face ((t (:inherit font-lock-variable-name-face :weight normal))) t)
- '(markdown-header-delimiter-face ((t (:inherit font-lock-function-name-face :weight normal))) t)
- '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight normal))) t)
- '(markdown-italic-face ((t (:slant normal))) t)
- '(org-column ((t (:background "slate gray" :strike-through nil :underline nil :slant normal :weight normal :height 100 :family "Courier New"))))
-;; In the Mac version comment the line above and uncomment the one below
- ;; '(org-column ((t (:background "slate gray" :strike-through nil :underline nil :slant normal :weight normal :height 120 :family "Monaco"))))
- )
 
 ;; This is to unfill paragraphs
 ;; ========================================================
@@ -299,13 +286,6 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; I don't need to highlight current line
 ;; ========================================================
-;; ;; highlight the current line; set a custom face, so we can
-;; ;; recognize from the normal marking (selection)
-;; (defface hl-line '((t (:background "Black")))
-;;   "Face to use for `hl-line-face'." :group 'hl-line)
-;; (setq hl-line-face 'hl-line)
-;; (global-hl-line-mode nil) ; turn it on for all modes by default
-
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 
 ;; When C-x C-f I don't want to see this extensions
