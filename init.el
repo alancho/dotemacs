@@ -29,6 +29,7 @@
    epc
    epl
    ess
+   esup
    exec-path-from-shell
    expand-region
    idle-highlight-mode
