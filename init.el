@@ -22,6 +22,7 @@
    color-theme-tango
    auctex
    auto-complete
+   auto-compile
    ctable
    dash
    deferred
@@ -68,7 +69,7 @@
 ;; Exec-path-from-shell
 ;; ========================================================
 ;; (require 'exec-path-from-shell) ;; if not using the ELPA package
-(exec-path-from-shell-initialize)
+;; (exec-path-from-shell-initialize)
 
 ;; Start in *scratch*
 ;; ========================================================
@@ -126,16 +127,16 @@
 
 ;; Python
 ;; ========================================================
-(elpy-enable)
-(elpy-use-ipython)
-(setq elpy-rpc-backend "jedi")
-(define-key elpy-mode-map [(shift return)] 'elpy-shell-send-region-or-buffer)
-(define-key elpy-mode-map [(C-return)] 'elpy-company-backend)
+;; (elpy-enable)
+;; (elpy-use-ipython)
+;; (setq elpy-rpc-backend "jedi")
+;; (define-key elpy-mode-map [(shift return)] 'elpy-shell-send-region-or-buffer)
+;; (define-key elpy-mode-map [(C-return)] 'elpy-company-backend)
 
 ;; Encryption
 ;; ========================================================
-(require 'epa-file)
-(epa-file-enable)
+;; (require 'epa-file)
+;; (epa-file-enable)
 
 ;; ESS
 ;; ========================================================
@@ -241,7 +242,7 @@
 
 ;; Expand region
 ;; ========================================================
-(require 'expand-region)
+;; (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; This are my faces, fonts, etcetera
@@ -304,12 +305,12 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; Setup markdown
 ;; ========================================================
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+;; (autoload 'markdown-mode "markdown-mode"
+;;    "Major mode for editing Markdown files" t)
 
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; My org-mode setup
 ;; ========================================================
@@ -415,11 +416,11 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; Recent mode
 ;; ========================================================
-(require 'recentf)
+;; (require 'recentf)
 
 ;; get rid of `find-file-read-only' and replace it with something
 ;; more useful.
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+;; (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 ;; enable recent files mode.
 (recentf-mode t)
@@ -451,29 +452,29 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; This is my configuration for RefTeX
 ;; ========================================================
-(require 'reftex)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
-(add-hook 'latex-mode-hook 'turn-on-reftex)   ; with Emacs latex mode
-(setq reftex-plug-into-AUCTeX t)
+;; (require 'reftex)
+;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
+;; (add-hook 'latex-mode-hook 'turn-on-reftex)   ; with Emacs latex mode
+;; (setq reftex-plug-into-AUCTeX t)
 
-;; So that RefTeX also recognizes \addbibresource. Note that you
-;; can't use $HOME in path for \addbibresource but that "~"
-;; works.
-(setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
-;; (setq reftex-bibpath-environment-variables '("~//Dropbox//PhD//writing//thesis//bib//"))
+;; ;; So that RefTeX also recognizes \addbibresource. Note that you
+;; ;; can't use $HOME in path for \addbibresource but that "~"
+;; ;; works.
+;; (setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
+;; ;; (setq reftex-bibpath-environment-variables '("~//Dropbox//PhD//writing//thesis//bib//"))
 
-(setq reftex-default-bibliography
-      (quote
-       ("~/Dropbox/PhD/all.bib"
-        ;; "~/Dropbox/PhD/writing/thesis/bib/roots.bib"
-        ;; "~/Dropbox/PhD/writing/thesis/bib/roots-modelling.bib"
-        ;; "~/Dropbox/PhD/writing/thesis/bib/canopy-temperature.bib"
-        ;; "~/Dropbox/PhD/writing/thesis/bib/hydraulic-redistribution.bib"
-)))
+;; (setq reftex-default-bibliography
+;;       (quote
+;;        ("~/Dropbox/PhD/all.bib"
+;;         ;; "~/Dropbox/PhD/writing/thesis/bib/roots.bib"
+;;         ;; "~/Dropbox/PhD/writing/thesis/bib/roots-modelling.bib"
+;;         ;; "~/Dropbox/PhD/writing/thesis/bib/canopy-temperature.bib"
+;;         ;; "~/Dropbox/PhD/writing/thesis/bib/hydraulic-redistribution.bib"
+;; )))
 
-(eval-after-load 'reftex-vars
-  '(progn
-     (setq reftex-cite-format '((?\C-m . "[@%l]")))))
+;; (eval-after-load 'reftex-vars
+;;   '(progn
+;;      (setq reftex-cite-format '((?\C-m . "[@%l]")))))
 
 ;; This is my color theme
 ;; ========================================================
@@ -545,20 +546,20 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; Uniquify
 ;; ========================================================
-(require 'uniquify)
+;; (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 ; Slightly more debatable
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Yasnippets
 ;; ========================================================
-(require 'yasnippet)
-(yas-global-mode 1)
-(global-set-key (kbd "C-.") 'yas/expand)
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
+;; (global-set-key (kbd "C-.") 'yas/expand)
 
 ;; I need smex
 ;; ========================================================
-(require 'smex)
+;; (require 'smex)
 (global-set-key (kbd "M-x") 'smex)
 (setq smex-save-file "~/.smex-items")
 (defun smex-update-after-load (unused)
@@ -571,18 +572,18 @@ convoluted. We use part of it --- skip comment par we are in."
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; This is for dired mode to omit extensions I don't want to see
-(require 'dired-x)
+;; (require 'dired-x)
 ;; (setq-default dired-omit-files-p t) ; Buffer-local variable
 ;; (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
 
 ;; So that I can make beamer presentations in org-mode
-(require 'ox-latex)
-(add-to-list 'org-latex-classes
-             '("beamer"
-               "\\documentclass\[presentation\]\{beamer\}"
-               ("\\section\{%s\}" . "\\section*\{%s\}")
-               ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
-               ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
+;; (require 'ox-latex)
+;; (add-to-list 'org-latex-classes
+;;              '("beamer"
+;;                "\\documentclass\[presentation\]\{beamer\}"
+;;                ("\\section\{%s\}" . "\\section*\{%s\}")
+;;                ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
+;;                ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
 
 ;; Ignore case in eshell
 (setq eshell-cmpl-ignore-case t)
