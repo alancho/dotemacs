@@ -22,22 +22,21 @@
    color-theme-tango
    auctex
    auto-complete
-   auto-compile
    ctable
    dash
    deferred
-   elpy
+   ;; elpy
    epc
    epl
    ess
-   esup
-   exec-path-from-shell
+   ;; esup
+   ;; exec-path-from-shell
    expand-region
    idle-highlight-mode
    ido-ubiquitous
-   magit
-   markdown-mode
-   org-mode
+   ;; magit
+   ;; markdown-mode
+   ;; org-mode
    paredit
    pkg-info
    popup
@@ -45,7 +44,7 @@
    s
    smex
    websocket
-   yasnippet
+   ;; yasnippet
    ))
 
 (when (ignore-errors (el-get-executable-find "cvs"))
