@@ -81,7 +81,9 @@
 ;; (setq-default TeX-engine 'xetex)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 
-(add-hook 'LaTeX-mode-hook '(lambda () (if (string-match "\\.Rnw\\'" buffer-file-name) (setq fill-column 80))))
+(add-hook 'LaTeX-mode-hook '(lambda ()
+			      (if (string-match "\\.Rnw\\'" buffer-file-name)
+				  (setq fill-column 80))))
 
 (auto-fill-mode -1)
 
@@ -167,13 +169,16 @@
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
+
 (add-hook 'ess-mode-hook
           '(lambda()
              (local-set-key [(shift return)] 'my-ess-eval)))
+
 (add-hook 'inferior-ess-mode-hook
           '(lambda()
              (local-set-key [C-up] 'comint-previous-input)
              (local-set-key [C-down] 'comint-next-input)))
+
 (add-hook 'Rnw-mode-hook
           '(lambda()
              (local-set-key [(shift return)] 'my-ess-eval)))
@@ -185,7 +190,9 @@
   (just-one-space 1)
   (insert "%>%")
   (reindent-then-newline-and-indent))
+
 (define-key ess-mode-map (kbd "C-<return>") 'then_R_operator)
+
 (define-key inferior-ess-mode-map (kbd "C-<return>") 'then_R_operator)
 
 (defun then_ggplot_plus ()
@@ -194,7 +201,9 @@
   (just-one-space 1)
   (insert "+")
   (reindent-then-newline-and-indent))
+
 (define-key ess-mode-map (kbd "C-+") 'then_ggplot_plus)
+
 (define-key inferior-ess-mode-map (kbd "C-+") 'then_ggplot_plus)
 
 ;; (setq ess-default-style 'OWN)
@@ -567,7 +576,7 @@ convoluted. We use part of it --- skip comment par we are in."
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; This is for dired mode to omit extensions I don't want to see
-;; (require 'dired-x)
+(require 'dired-x)
 (setq-default dired-omit-files-p t) ; Buffer-local variable
 (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
 
