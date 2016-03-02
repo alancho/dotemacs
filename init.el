@@ -46,7 +46,7 @@
    s
    smex
    websocket
-   yasnippet
+   ;; yasnippet
    ))
 
 (when (ignore-errors (el-get-executable-find "cvs"))
@@ -558,8 +558,8 @@ convoluted. We use part of it --- skip comment par we are in."
 ;; Yasnippets
 ;; ========================================================
 ;; (require 'yasnippet)
-(yas-global-mode 1)
-(global-set-key (kbd "C-.") 'yas/expand)
+;; (yas-global-mode 1)
+;; (global-set-key (kbd "C-.") 'yas/expand)
 
 ;; I need smex
 ;; ========================================================
