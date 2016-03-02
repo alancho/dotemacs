@@ -35,7 +35,8 @@
    ;; exec-path-from-shell
    expand-region
    idle-highlight-mode
-   ido-ubiquitous
+   ;; ido-ubiquitous
+   julia-mode
    magit
    ;; markdown-mode
    ;; org-mode
@@ -46,7 +47,7 @@
    s
    smex
    websocket
-   ;; yasnippet
+   yasnippet
    ))
 
 (when (ignore-errors (el-get-executable-find "cvs"))
@@ -576,9 +577,9 @@ convoluted. We use part of it --- skip comment par we are in."
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; This is for dired mode to omit extensions I don't want to see
-(require 'dired-x)
-(setq-default dired-omit-files-p t) ; Buffer-local variable
-(setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+;; (require 'dired-x)
+;; (setq-default dired-omit-files-p t) ; Buffer-local variable
+;; (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
 
 ;; So that I can make beamer presentations in org-mode
 ;; (require 'ox-latex)
@@ -607,7 +608,7 @@ convoluted. We use part of it --- skip comment par we are in."
             (eshell)))
 
 ;; In dired, sort directories first
-(setq dired-listing-switches "-aBhl  --group-directories-first")
+;; (setq dired-listing-switches "-aBhl  --group-directories-first")
 
 ;; I use to enable ido mode in org-mode. Because I don't use org
 ;; anymore I need to define how to use ido next
@@ -615,13 +616,8 @@ convoluted. We use part of it --- skip comment par we are in."
 (setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
 (setq ido-enable-flex-matching t)
 (setq ido-use-filename-at-point 'guess)
-(setq ido-show-dot-for-dired t)
+;; (setq ido-show-dot-for-dired t)
 (setq ido-default-buffer-method 'selected-window)
-
-;; have vertical ido completion lists
-(setq ido-decorations
-      '("\n-> " "" "\n   " "\n   ..." "[" "]"
-	" [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
 
 ;; full screen
 (defun fullscreen ()
