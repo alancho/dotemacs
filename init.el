@@ -203,6 +203,10 @@
   (insert "+")
   (reindent-then-newline-and-indent))
 
+(defun ess-roxygen-print-one-param (p)
+  "Insert parameter P to the roxygen comments."
+  (insert (format "##' @param %s\n" p)))
+
 (define-key ess-mode-map (kbd "C-+") 'then_ggplot_plus)
 
 (define-key inferior-ess-mode-map (kbd "C-+") 'then_ggplot_plus)
@@ -237,8 +241,13 @@
 
 ;; Define key-bindings for calling 'spin';
 ;; 'M-n n' - spin the current buffer
+(define-key ess-mode-map "\M-nn" 'ess-swv-render)
 ;; (define-key ess-mode-map "\M-nn" 'ess-swv-spin)
 
+(defun ess-swv-render ()
+  "Run spin on the current .R file."
+  (interactive)
+  (ess-swv-run-in-R "rmarkdown::render"))
 ;; (defun ess-swv-spin ()
 ;;   "Run spin on the current .R file."
 ;;   (interactive)
