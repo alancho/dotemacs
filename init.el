@@ -1,3 +1,5 @@
+(require 'cl)
+
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -25,16 +27,16 @@
    ctable
    dash
    deferred
-   ;; elpy
+   elpy
    epc
    epl
    ess
-   ;; esup
+   esup
    ;; exec-path-from-shell
    expand-region
    idle-highlight-mode
    ido-ubiquitous
-   ;; magit
+   magit
    ;; markdown-mode
    ;; org-mode
    paredit
@@ -44,7 +46,7 @@
    s
    smex
    websocket
-   ;; yasnippet
+   yasnippet
    ))
 
 (when (ignore-errors (el-get-executable-find "cvs"))
@@ -95,10 +97,9 @@
   (TeX-command "LaTeX" 'TeX-master-file -1))
 
 (defun my-LaTeX-hook ()
- (local-set-key (kbd "C-c C-c") 'my-run-latex))
+  (local-set-key (kbd "C-c C-c") 'my-run-latex))
 
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-hook)
-;; ========================================================
 
 ;; Autocomplete
 ;; ========================================================
@@ -126,11 +127,11 @@
 
 ;; Python
 ;; ========================================================
-;; (elpy-enable)
-;; (elpy-use-ipython)
-;; (setq elpy-rpc-backend "jedi")
-;; (define-key elpy-mode-map [(shift return)] 'elpy-shell-send-region-or-buffer)
-;; (define-key elpy-mode-map [(C-return)] 'elpy-company-backend)
+(elpy-enable)
+(elpy-use-ipython)
+(setq elpy-rpc-backend "jedi")
+(define-key elpy-mode-map [(shift return)] 'elpy-shell-send-region-or-buffer)
+(define-key elpy-mode-map [(C-return)] 'elpy-company-backend)
 
 ;; Encryption
 ;; ========================================================
@@ -147,6 +148,7 @@
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
+
 (defun my-ess-start-R ()
   (interactive)
   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
@@ -158,6 +160,7 @@
         (R)
         (set-window-buffer w2 "*R*")
         (set-window-buffer w1 w1name))))
+
 (defun my-ess-eval ()
   (interactive)
   (my-ess-start-R)
@@ -224,12 +227,12 @@
 
 ;; Define key-bindings for calling 'spin';
 ;; 'M-n n' - spin the current buffer
-(define-key ess-mode-map "\M-nn" 'ess-swv-spin)
+;; (define-key ess-mode-map "\M-nn" 'ess-swv-spin)
 
-(defun ess-swv-spin ()
-  "Run spin on the current .R file."
-  (interactive)
-  (ess-swv-run-in-R "knitr::spin"))
+;; (defun ess-swv-spin ()
+;;   "Run spin on the current .R file."
+;;   (interactive)
+;;   (ess-swv-run-in-R "knitr::spin"))
 
 ;; This is to change the default commenting style from base R to
 ;; roxygen comments
@@ -237,7 +240,6 @@
 ;;           '(lambda ()
 ;;             (setq comment-start "##'"
 ;;                   comment-end   "")))
-
 
 ;; Expand region
 ;; ========================================================
@@ -266,21 +268,21 @@ convoluted. We use part of it --- skip comment par we are in."
   (if (save-excursion
         (beginning-of-line) (looking-at TeX-comment-start-regexp))
       (TeX-comment-forward)
-  (let ((to (progn
-              (LaTeX-forward-paragraph)
-              (point)))
-        (from (progn
-                (LaTeX-backward-paragraph)
-                (point)))
-        (to-marker (make-marker)))
-    (set-marker to-marker to)
-    (while (< from (marker-position to-marker))
-      (forward-sentence)
-      (setq tmp-end (point))
-      (LaTeX-fill-region-as-paragraph from tmp-end)
-      (setq from (point))
-      (unless (bolp)
-        (LaTeX-newline))))))
+    (let ((to (progn
+		(LaTeX-forward-paragraph)
+		(point)))
+	  (from (progn
+		  (LaTeX-backward-paragraph)
+		  (point)))
+	  (to-marker (make-marker)))
+      (set-marker to-marker to)
+      (while (< from (marker-position to-marker))
+	(forward-sentence)
+	(setq tmp-end (point))
+	(LaTeX-fill-region-as-paragraph from tmp-end)
+	(setq from (point))
+	(unless (bolp)
+	  (LaTeX-newline))))))
 
 (eval-after-load "latex"
   '(define-key LaTeX-mode-map (kbd "M-q") 'my-fill-latex-paragraph))
@@ -292,12 +294,22 @@ convoluted. We use part of it --- skip comment par we are in."
 ;; When C-x C-f I don't want to see this extensions
 ;; ========================================================
 (custom-set-variables
- '(completion-ignored-extensions (quote (".docx" ".xlsx" ".wmf" ".doc" ".xls" ".csv" ".bib" ".o" "~" ".bin" ".bak" ".obj" ".map" ".ico" ".pif" ".lnk" ".a" ".ln" ".blg" ".bbl" ".dll" ".drv" ".vxd" ".386" ".elc" ".lof" ".glo" ".idx" ".lot" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".fasl" ".ufsl" ".fsl" ".dxl" ".pfsl" ".dfsl" ".p64fsl" ".d64fsl" ".dx64fsl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".odt" ".pptx" ".ppt" ".txt" ".dat"))))
+ '(completion-ignored-extensions (quote (".docx" ".xlsx" ".wmf" ".doc"
+					 ".xls" ".csv" ".bib" ".o" "~" ".bin" ".bak"
+					 ".obj" ".map" ".ico" ".pif" ".lnk" ".a" ".ln"
+					 ".blg" ".bbl" ".dll" ".drv" ".vxd" ".386" ".elc"
+					 ".lof" ".glo" ".idx" ".lot" ".svn/" ".hg/" ".git/"
+					 ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class"
+					 ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".fasl" ".ufsl"
+					 ".fsl" ".dxl" ".pfsl" ".dfsl" ".p64fsl" ".d64fsl"
+					 ".dx64fsl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp"
+					 ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs"
+					 ".tps" ".vrs" ".pyc" ".pyo" ".odt" ".pptx" ".ppt" ".txt" ".dat"))))
 
 ;; My magit setup
 ;; ========================================================
 ;; (require 'magit)
-;; (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; To stop seeing the warning triggered by the last version
 ;; (setq magit-last-seen-setup-instructions "1.4.0")
@@ -415,24 +427,10 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; Recent mode
 ;; ========================================================
-;; (require 'recentf)
-
-;; get rid of `find-file-read-only' and replace it with something
-;; more useful.
-;; (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-
-;; enable recent files mode.
 (recentf-mode t)
 
-; 50 files ought to be enough.
+;; 50 files ought to be enough.
 (setq recentf-max-saved-items 50)
-
-;; (defun ido-recentf-open ()
-;;   "Use `ido-completing-read' to \\[find-file] a recent file"
-;;   (interactive)
-;;   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-;;       (message "Opening file...")
-;;     (message "Aborting")))
 
 (global-set-key (kbd "C-x C-r") 'ido-recentf)
 
@@ -494,13 +492,11 @@ convoluted. We use part of it --- skip comment par we are in."
 (visual-line-mode 1)
 (setq ispell-program-name "aspell")
 (prefer-coding-system 'utf-8)
-
 (auto-fill-mode -1)
 
 ;; (remove-hook 'text-mode-hook #'turn-on-auto-fill)
 
 (setq-default cursor-type 'bar)
-
 (blink-cursor-mode 1)
 
 (mapc
@@ -538,23 +534,23 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; Smooth movement of buffer when scrolling or moving with arrow keys
 (setq redisplay-dont-pause t
-  scroll-margin 1
-  scroll-step 1
-  scroll-conservatively 10000
-  scroll-preserve-screen-position 1)
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
 
 ;; Uniquify
 ;; ========================================================
 ;; (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-; Slightly more debatable
+;; Slightly more debatable
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Yasnippets
 ;; ========================================================
 ;; (require 'yasnippet)
-;; (yas-global-mode 1)
-;; (global-set-key (kbd "C-.") 'yas/expand)
+(yas-global-mode 1)
+(global-set-key (kbd "C-.") 'yas/expand)
 
 ;; I need smex
 ;; ========================================================
@@ -562,9 +558,9 @@ convoluted. We use part of it --- skip comment par we are in."
 (global-set-key (kbd "M-x") 'smex)
 (setq smex-save-file "~/.smex-items")
 (defun smex-update-after-load (unused)
-      (when (boundp 'smex-cache)
-        (smex-update)))
-    (add-hook 'after-load-functions 'smex-update-after-load)
+  (when (boundp 'smex-cache)
+    (smex-update)))
+(add-hook 'after-load-functions 'smex-update-after-load)
 
 ;; To answer quicker
 ;; ========================================================
@@ -572,8 +568,8 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; This is for dired mode to omit extensions I don't want to see
 ;; (require 'dired-x)
-;; (setq-default dired-omit-files-p t) ; Buffer-local variable
-;; (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+(setq-default dired-omit-files-p t) ; Buffer-local variable
+(setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
 
 ;; So that I can make beamer presentations in org-mode
 ;; (require 'ox-latex)
@@ -591,9 +587,9 @@ convoluted. We use part of it --- skip comment par we are in."
 (setq backup-directory-alist '(("." . "~/.saves")))
 (setq backup-by-copying t)
 (setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 
 ;; Start emacs in eshell
 (add-hook 'emacs-startup-hook
@@ -603,3 +599,27 @@ convoluted. We use part of it --- skip comment par we are in."
 
 ;; In dired, sort directories first
 (setq dired-listing-switches "-aBhl  --group-directories-first")
+
+;; I use to enable ido mode in org-mode. Because I don't use org
+;; anymore I need to define how to use ido next
+(ido-mode t)
+(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
+(setq ido-enable-flex-matching t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-show-dot-for-dired t)
+(setq ido-default-buffer-method 'selected-window)
+
+;; have vertical ido completion lists
+(setq ido-decorations
+      '("\n-> " "" "\n   " "\n   ..." "[" "]"
+	" [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
+
+;; full screen
+(defun fullscreen ()
+  (interactive)
+  (set-frame-parameter nil 'fullscreen
+		       (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+(global-set-key [f11] 'fullscreen)
+
+;; Use the clipboard, pretty please, so that copy/paste "works"
+(setq x-select-enable-clipboard t)
