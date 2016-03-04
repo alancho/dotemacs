@@ -1,5 +1,3 @@
-(require 'cl)
-
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -11,13 +9,10 @@
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-(package-initialize)
-
 (el-get 'sync)
 
 ;; now set our own packages
-(setq
- my:el-get-packages
+(setq my:el-get-packages
  '(el-get				; el-get is self-hosting
    zencoding-mode			; http://www.emacswiki.org/emacs/ZenCoding
    color-theme		                ; nice looking emacs
@@ -66,6 +61,13 @@
 ;; install new packages and init already installed packages
 (el-get 'sync my:el-get-packages)
 
+;; I still need ELPA
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+
+(package-initialize)
+
 ;; The following are my settings
 
 ;; Exec-path-from-shell
@@ -86,7 +88,7 @@
 			      (if (string-match "\\.Rnw\\'" buffer-file-name)
 				  (setq fill-column 80))))
 
-(auto-fill-mode -1)
+;; (auto-fill-mode -1)
 
 (remove-hook 'text-mode-hook #'turn-on-auto-fill)
 
@@ -248,6 +250,7 @@
   "Run spin on the current .R file."
   (interactive)
   (ess-swv-run-in-R "rmarkdown::render"))
+
 ;; (defun ess-swv-spin ()
 ;;   "Run spin on the current .R file."
 ;;   (interactive)
@@ -511,7 +514,7 @@ convoluted. We use part of it --- skip comment par we are in."
 (visual-line-mode 1)
 (setq ispell-program-name "aspell")
 (prefer-coding-system 'utf-8)
-(auto-fill-mode -1)
+;; (auto-fill-mode -1)
 
 ;; (remove-hook 'text-mode-hook #'turn-on-auto-fill)
 
